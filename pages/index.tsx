@@ -4,16 +4,12 @@ import DashboardCard from "@/components/DashboardCard";
 import { statuses } from "@/constants/statuses";
 import Link from "next/link";
 import { useTheme } from "@/components/ThemeProvider";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
+import dynamic from "next/dynamic";
+
+const MonthlyBarChart = dynamic(
+  () => import("@/components/MonthlyBarChart"),
+  { ssr: false }
+);
 
 export default function Home() {
   const { theme, toggleTheme } = useTheme();
@@ -159,30 +155,27 @@ export default function Home() {
       </div>
 
       {/* グラフ */}
-      <div className={isFuturistic ? "bg-gray-900 p-6 rounded-xl shadow" : "bg-black bg-opacity-70 p-6 rounded-xl shadow border-4 border-yellow-400"}>
-        <h2 className={isFuturistic ? "text-xl font-semibold text-cyan-300 mb-4" : "text-xl font-semibold text-yellow-300 mb-4"}>月別推移</h2>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart
-            data={monthlyData}
-            margin={{ top: 10, right: 20, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="#444" />
-            <XAxis dataKey="month" stroke="#ccc" />
-            <YAxis
-              stroke="#ccc"
-              width={80}
-              tickFormatter={(value) => `${(value / 10000).toLocaleString()}万`}
-            />
-            <Tooltip
-              formatter={(value: number) => `${value.toLocaleString()} 円`}
-            />
-            <Legend />
-            <Bar dataKey="estimateTotal" fill="#00bcd4" name="見積総額" />
-            <Bar dataKey="invoiceTotal" fill="#4caf50" name="請求総額" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+      <div
+        className={
+          isFuturistic
+            ? "bg-gray-900 p-6 rounded-xl shadow"
+            : "bg-black bg-opacity-70 p-6 rounded-xl shadow border-4 border-yellow-400"
+        }
+      >
+        <h2
+          className={
+            isFuturistic
+              ? "text-xl font-semibold text-cyan-300 mb-4"
+              : "text-xl font-semibold text-yellow-300 mb-4"
+          }
+        >
+          月別推移
+        </h2>
 
+        {monthlyData.length > 0 && (
+          <MonthlyBarChart data={monthlyData} />
+        )}
+      </div>
     </div>
   );
 }
