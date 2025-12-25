@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+:root {
+  --bg: #0f172a;
+  --text: #38bdf8;
+  --border: #94a3b8;
+  --button: #0ea5e9;
+}
+
+.theme-futuristic {
+  --bg: #0f172a;
+  --text: #38bdf8;
+  --border: #94a3b8;
+  --button: #0ea5e9;
+}
+
+.theme-dragonball {
+  --bg: #1f2937;
+  --text: #facc15;
+  --border: #f59e0b;
+  --button: #facc15;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.btn-futuristic {
+  @apply px-4 py-2 border border-cyan-400 text-cyan-300 rounded-md hover:bg-cyan-400 hover:text-black transition;
+}
+
+@font-face {
+  font-family: 'Saiyan Sans';
+  src: url('/fonts/Saiyan-Sans.ttf') format('truetype');
+}
+
+.font-dragonball {
+  font-family: 'Saiyan Sans', sans-serif;
+}
+
+.button-dragonball {
+  background: linear-gradient(45deg, #facc15, #f59e0b);
+  color: #000;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px #facc15;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: power-up 2s infinite;
+}
+
+.button-dragonball:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #facc15;
+}
+
+.logo {
+  letter-spacing: 4px;
+}
+
+.dragon {
+  color: yellow;
+  text-shadow:
+    -2px -2px 0 black,
+    2px -2px 0 black,
+    -2px 2px 0 black,
+    2px 2px 0 black;
+}
+
+.ball {
+  color: red;
+  text-shadow:
+    -2px -2px 0 black,
+    2px -2px 0 black,
+    -2px 2px 0 black,
+    2px 2px 0 black;
+}
