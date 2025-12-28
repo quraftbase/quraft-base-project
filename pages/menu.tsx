@@ -1,4 +1,5 @@
 // pages/menu.tsx
+// 使ってない
 'use client'
 
 import Link from 'next/link'
