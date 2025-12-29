@@ -3,7 +3,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-// import { supabase } from "@/lib/supabaseClient";
 import { statuses } from "@/constants/statuses";
 import { generatePdf } from "@/lib/pdfGenerator";
 import { useTheme } from "@/components/ThemeProvider";
