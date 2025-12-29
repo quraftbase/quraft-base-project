@@ -1,5 +1,9 @@
 // pages/login.tsx
-// 使っていない
+// 使っていないが後に実装するかも
+
+export default function Login() {
+  return null;
+}
 // import { useState } from 'react'
 // import { useRouter } from 'next/router'
 // import { supabase } from '../lib/supabaseClient'
