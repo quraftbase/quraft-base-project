@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
+// import { supabase } from "@/lib/supabaseClient";
 import { statuses } from "@/constants/statuses";
 import { generatePdf } from "@/lib/pdfGenerator";
 import { useTheme } from "@/components/ThemeProvider";
@@ -27,13 +27,13 @@ export default function ListPage() {
   const [sortOption, setSortOption] = useState<"date_desc" | "date_asc" | "number_asc" | "number_desc">("date_desc");
 
   const fetchDocuments = async () => {
-    const { data, error } = await supabase.rpc("get_merged_documents");
-    if (error) {
-      console.error("データ取得失敗:", error.message);
+    const res = await fetch("/api/list");
+    if (!res.ok) {
+      console.error("データ取得失敗");
       return;
     }
 
-    let filtered = data as DocumentData[];
+    let filtered = (await res.json()) as DocumentData[];
 
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
